@@ -9,8 +9,16 @@ type FormData = {
 }
 
 type Address = {
+  "cep": string;
   "logradouro": string;
+  "complemento": string;
+  "bairro": string;
   "localidade": string;
+  "uf": string;
+  "ibge": string;
+  "gia": string;
+  "ddd": string;
+  "siafi": string;
 }
 
 const CepSearch = () => {
@@ -34,7 +42,6 @@ const CepSearch = () => {
     axios.get(`https://viacep.com.br/ws/${formData.cep}/json`)
     .then((response) => {
       setAddress(response.data);
-      console.log(response.data);
     })
     .catch((error) => {
       setAddress(undefined);
@@ -64,8 +71,16 @@ const CepSearch = () => {
 
         {address &&
           <>
+            <ResultCard title="CEP" description={address.cep} />
             <ResultCard title="Logradouro" description={address.logradouro} />
+            <ResultCard title="Complemento" description={address.complemento} />
+            <ResultCard title="Bairro" description={address.bairro} />
             <ResultCard title="Localidade" description={address.localidade} />
+            <ResultCard title="UF" description={address.uf} />
+            <ResultCard title="IBGE" description={address.ibge} />
+            <ResultCard title="GIA" description={address.gia} />
+            <ResultCard title="DDD" description={address.ddd} />
+            <ResultCard title="SIAF" description={address.siafi} />
           </>
         }
 
